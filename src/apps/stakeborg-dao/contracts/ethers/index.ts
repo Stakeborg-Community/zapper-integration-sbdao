@@ -2,5 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { GovernanceStaking } from './GovernanceStaking';
+export type { StandardToken } from './StandardToken';
 export * as factories from './factories';
 export { GovernanceStaking__factory } from './factories/GovernanceStaking__factory';
+export { StandardToken__factory } from './factories/StandardToken__factory';

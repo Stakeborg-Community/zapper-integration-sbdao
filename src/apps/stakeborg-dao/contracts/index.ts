@@ -5,6 +5,7 @@ import { ContractFactory } from '~contract/contracts';
 import { Network } from '~types/network.interface';
 
 import { GovernanceStaking__factory } from './ethers';
+import { StandardToken__factory } from './ethers';
 
 // eslint-disable-next-line
 type ContractOpts = { address: string; network: Network };
@@ -18,6 +19,10 @@ export class StakeborgDaoContractFactory extends ContractFactory {
   governanceStaking({ address, network }: ContractOpts) {
     return GovernanceStaking__factory.connect(address, this.appToolkit.getNetworkProvider(network));
   }
+  standardToken({ address, network }: ContractOpts) {
+    return StandardToken__factory.connect(address, this.appToolkit.getNetworkProvider(network));
+  }
 }
 
 export type { GovernanceStaking } from './ethers';
+export type { StandardToken } from './ethers';

@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { GovernanceStaking__factory } from './GovernanceStaking__factory';
+export { StandardToken__factory } from './StandardToken__factory';

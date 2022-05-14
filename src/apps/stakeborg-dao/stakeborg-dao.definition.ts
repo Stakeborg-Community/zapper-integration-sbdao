@@ -15,6 +15,12 @@ export const STAKEBORG_DAO_DEFINITION = appDefinition({
       type: GroupType.POSITION,
       label: 'Governance Staking',
     },
+
+    standardToken: {
+      id: 'standard-token',
+      type: GroupType.TOKEN,
+      label: 'STANDARD token',
+    },
   },
 
   tags: [AppTag.ASSET_MANAGEMENT, AppTag.LIQUID_STAKING, AppTag.STAKING],
