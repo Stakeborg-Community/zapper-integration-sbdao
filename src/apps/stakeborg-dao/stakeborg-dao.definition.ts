@@ -1,6 +1,6 @@
 import { Register } from '~app-toolkit/decorators';
 import { appDefinition, AppDefinition } from '~app/app.definition';
-import { AppAction, AppTag } from '~app/app.interface';
+import { AppAction, AppTag, GroupType } from '~app/app.interface';
 import { Network } from '~types/network.interface';
 
 export const STAKEBORG_DAO_DEFINITION = appDefinition({
@@ -8,7 +8,15 @@ export const STAKEBORG_DAO_DEFINITION = appDefinition({
   name: 'StakeborgDAO',
   description: 'Governance and liquidity pools of StakeborgDAO',
   url: 'https://app.stakeborgdao.com/',
-  groups: {},
+
+  groups: {
+    governanceStaking: {
+      id: 'governance-staking',
+      type: GroupType.POSITION,
+      label: 'Governance Staking',
+    },
+  },
+
   tags: [AppTag.ASSET_MANAGEMENT, AppTag.LIQUID_STAKING, AppTag.STAKING],
   keywords: [],
   links: {},
