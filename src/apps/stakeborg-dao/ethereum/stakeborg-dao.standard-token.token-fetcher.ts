@@ -13,14 +13,18 @@ const appId = STAKEBORG_DAO_DEFINITION.id;
 const groupId = STAKEBORG_DAO_DEFINITION.groups.standardToken.id;
 const network = Network.ETHEREUM_MAINNET;
 
+const standardTokenContractAddress = "0xda0c94c73d127ee191955fb46bacd7ff999b2bcd";
+
 @Register.TokenPositionFetcher({ appId, groupId, network })
 export class EthereumStakeborgDaoStandardTokenTokenFetcher implements PositionFetcher<AppTokenPosition> {
   constructor(
     @Inject(APP_TOOLKIT) private readonly appToolkit: IAppToolkit,
     @Inject(StakeborgDaoContractFactory) private readonly stakeborgDaoContractFactory: StakeborgDaoContractFactory,
-  ) {}
+  ) { }
 
   async getPositions() {
-    return [];
+    const standardToken = await this.appToolkit.getBaseTokenPrice({ "network": network, "address": standardTokenContractAddress });
+    console.log(standardToken);
+    return standardToken as any;
   }
 }
