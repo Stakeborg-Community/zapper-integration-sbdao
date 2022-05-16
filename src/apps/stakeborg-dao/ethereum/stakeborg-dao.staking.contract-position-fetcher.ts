@@ -1,4 +1,5 @@
 import { Inject } from '@nestjs/common';
+import axios from 'axios';
 
 import { IAppToolkit, APP_TOOLKIT } from '~app-toolkit/app-toolkit.interface';
 import { Register } from '~app-toolkit/decorators';
@@ -21,6 +22,9 @@ export class EthereumStakeborgDaoStakingContractPositionFetcher implements Posit
   ) {}
 
   async getPositions() {
+    const endpoint = `https://std.kwix.xyz/reward?address=0x000000000000000000000000000000000000dead`;
+    const apy = parseFloat(await axios.get(endpoint).then(r => r.data.apy));
+
     return this.appToolkit.helpers.singleStakingFarmContractPositionHelper.getContractPositions<GovernanceStaking>({
       appId,
       groupId,
@@ -29,7 +33,7 @@ export class EthereumStakeborgDaoStakingContractPositionFetcher implements Posit
       resolveStakedTokenAddress: async () => Promise.resolve('0xda0c94c73d127ee191955fb46bacd7ff999b2bcd'),
       resolveRewardTokenAddresses: async () => Promise.resolve('0xda0c94c73d127ee191955fb46bacd7ff999b2bcd'),
       resolveFarmContract: opts => this.stakeborgDaoContractFactory.governanceStaking(opts),
-      resolveRois: () => ({ dailyROI: 0, weeklyROI: 0, yearlyROI: 0 }),
+      resolveRois: () => ({ dailyROI: apy / 365, weeklyROI: apy / 52, yearlyROI: apy }),
     });
   }
 }
