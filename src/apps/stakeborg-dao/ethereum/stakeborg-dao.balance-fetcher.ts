@@ -21,6 +21,12 @@ export class EthereumStakeborgDaoBalanceFetcher implements BalanceFetcher {
   ) {}
 
   private async getStakedBlanace(address: string) {
+    const multicall = this.appToolkit.getMulticall(network);
+    const contract = this.stakeborgDaoContractFactory.standardToken({
+      address: '0xda0c94c73d127ee191955fb46bacd7ff999b2bcd',
+      network,
+    });
+
     return this.appToolkit.helpers.singleStakingContractPositionBalanceHelper.getBalances<GovernanceStaking>({
       address,
       appId: appId,
@@ -34,7 +40,7 @@ export class EthereumStakeborgDaoBalanceFetcher implements BalanceFetcher {
       resolveRewardTokenBalances: async ({}) => {
         const endpoint = `https://std.kwix.xyz/reward?address=${address}`;
         const data = await axios.get(endpoint).then(r => r.data.data);
-        return parseFloat(data.rewards[address]) * 10 ** 18;
+        return parseFloat(data.rewards[address]) * 10 ** (await multicall.wrap(contract).decimals());
       },
     });
   }
