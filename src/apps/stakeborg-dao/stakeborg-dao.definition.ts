@@ -10,6 +10,7 @@ export const STAKEBORG_DAO_DEFINITION = appDefinition({
   description: 'StakeborgDAO App',
   url: 'https://stakeborgdao.com/',
   groups: {
+    indexes: { id: 'indexes', type: GroupType.TOKEN, label: 'Indexes' },
     staking: { id: 'staking', type: GroupType.POSITION, label: 'Governance' },
   },
   tags: [AppTag.ASSET_MANAGEMENT, AppTag.LIQUIDITY_POOL, AppTag.STAKING],
