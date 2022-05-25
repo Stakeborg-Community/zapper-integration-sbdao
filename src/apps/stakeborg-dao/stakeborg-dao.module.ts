@@ -3,6 +3,8 @@ import { AbstractApp } from '~app/app.dynamic-module';
 
 import { StakeborgDaoContractFactory } from './contracts';
 import { EthereumStakeborgDaoBalanceFetcher } from './ethereum/stakeborg-dao.balance-fetcher';
+import { EthereumStakeborgDaoIndexesTokenFetcher } from './ethereum/stakeborg-dao.indexes.token-fetcher';
+import { EthereumStakeborgDaoIndexesTokenFetcher } from './ethereum/stakeborg-dao.indexes.token-fetcher';
 import { EthereumStakeborgDaoStakingContractPositionFetcher } from './ethereum/stakeborg-dao.staking.contract-position-fetcher';
 import { StakeborgDaoAppDefinition, STAKEBORG_DAO_DEFINITION } from './stakeborg-dao.definition';
 
@@ -10,6 +12,8 @@ import { StakeborgDaoAppDefinition, STAKEBORG_DAO_DEFINITION } from './stakeborg
   appId: STAKEBORG_DAO_DEFINITION.id,
   providers: [
     EthereumStakeborgDaoBalanceFetcher,
+    EthereumStakeborgDaoIndexesTokenFetcher,
+    EthereumStakeborgDaoIndexesTokenFetcher,
     EthereumStakeborgDaoStakingContractPositionFetcher,
     StakeborgDaoAppDefinition,
     StakeborgDaoContractFactory,
